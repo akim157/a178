@@ -14,6 +14,10 @@ h3{
     font-size: 24px;
     font-weight: 700;
 }
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
 /*======================header========================*/
 .navbar-inverse .navbar-nav>li>a {
     color: #fff;
@@ -101,13 +105,19 @@ h3{
     display:none;
     margin-botton: 15px;
 }
-.click-search{
+.click-search,
+.reset-filter,
+.sety{
     color: #ffffff;
     margin: 13px 0;
     display: block;
 }
 .click-search:hover,
-.click-search:focus{
+.reset-filter:hover,
+.sety:hover,
+.click-search:focus,
+.reset-filter:focus,
+.sety:focus{
     color: #fff;
     background-color: transparent;
 }
@@ -116,6 +126,23 @@ h3{
 }
 .main-search .btn-search{
     margin-top: 10px;
+}
+.main-search .form-control[disabled],
+.main-search .form-control[readonly],
+.main-search fieldset[disabled] .form-control {
+    background-color: #610508;
+    color: #a5a1a1;
+    opacity: 1;
+}
+/*----------------content----------------*/
+#content{
+    color: #ffffff;
+}
+#content .help h1{
+    font-size: 27px;
+}
+#content .help .form-control{
+    width: 100% !important;
 }
 
 /* Large Devices, Wide Screens */
@@ -128,7 +155,12 @@ h3{
 }
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px){
-
+    .form-search h2 {
+        font-size: 27px;
+    }
+    .main-search select{
+        width: 300px !important;
+    }
 }
 @media (min-width: 768px){
     .navbar {

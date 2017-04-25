@@ -35,7 +35,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">каталог</a></li>
                         <li><a href="#">помощь</a></li>
-                        <li><a href="#">контакты</a></li>
+                        <li><a href="contacts.html">контакты</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">вход</a></li>
@@ -62,7 +62,7 @@
                         <form class="form-inline">
                             <div class="form-group">
                                 <select name="marka" id="marka" class="form-control">
-                                    <option value="1">Марка авто</option>
+                                    <option value="0">Марка авто</option>
                                     <option value="2">Марка авто 2</option>
                                     <option value="3">Марка авто 3</option>
                                     <option value="4">Марка авто 4</option>
@@ -70,8 +70,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select name="model" id="model-avto" class="form-control">
-                                    <option value="1">Модель авто</option>
+                                <select name="model" id="model-avto" class="form-control" disabled>
+                                    <option value="0">Модель авто</option>
                                     <option value="2">Модель авто 2</option>
                                     <option value="3">Модель авто 3</option>
                                     <option value="4">Модель авто 4</option>
@@ -79,8 +79,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select name="group" id="group-avto" class="form-control">
-                                    <option value="1">Группа деталей</option>
+                                <select name="group" id="group-avto" class="form-control" disabled>
+                                    <option value="0">Группа деталей</option>
                                     <option value="2">Группа деталей 2</option>
                                     <option value="3">Группа деталей 3</option>
                                     <option value="4">Группа деталей 4</option>
@@ -88,14 +88,15 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select name="detail" id="detail-avto" class="form-control">
-                                    <option value="1">Деталь</option>
+                                <select name="detail" id="detail-avto" class="form-control" disabled>
+                                    <option value="0">Деталь</option>
                                     <option value="2">Деталь 2</option>
                                     <option value="3">Деталь 3</option>
                                     <option value="4">Деталь 4</option>
                                     <option value="5">Деталь 5</option>
                                 </select>
                             </div>
+                            <a href="#" class="reset-filter">Сбросить фильтры</a>
                             <button type="submit" class="btn btn-default btn-search">найти</button>
                         </form>
                     </div>
