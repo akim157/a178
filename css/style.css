@@ -4,6 +4,8 @@ body {
     font-size: 14px;
     color: #000000;
     min-width: 320px;
+    min-height: 615px;
+    height: 100% !important;
 }
 img{
     max-width: 100%;
@@ -19,7 +21,8 @@ h3{
     outline-offset: 0;
 }
 /*======================header========================*/
-.navbar-inverse .navbar-nav>li>a {
+.navbar-inverse .navbar-nav>li>a,
+#content a {
     color: #fff;
 }
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
@@ -38,9 +41,10 @@ h3{
 }
 .section-table{
     display: table;
-    /*height: 100%;*/
-    height: 750px;
+    /* height: 100%; */
+    /* height: 750px; */
     width: 100%;
+    height: 85%;
 }
 .section-row{
     display: table-row;
@@ -57,14 +61,16 @@ h3{
 .section-center h1{
     color: #ffffff;
 }
-.form-search{
+.form-search,
+.content_catalog {
     background: rgba(34, 34, 34, 0.65);
     color: #fff;
     padding: 40px 80px;
     border: 1px solid rgba(94, 4, 5, 0.64);
     border-radius: 4px;
 }
-.form-search h2{
+.form-search h2,
+.content_catalog h2{
     color: #ffffff;
     font-size: 34px;
     font-weight: 700;
@@ -144,14 +150,79 @@ h3{
 #content .help .form-control{
     width: 100% !important;
 }
-
+.box-contact {
+    width: 333px;
+    display: inline-block;
+}
+/*--------map--------------*/
+#map{
+    width: 100%; height: 300px; padding: 0; margin: 0;
+}
+.auto {
+    display:none;
+    margin-top: 5px;
+    color: #fff;
+}
+.menu-top .form-inline{
+    text-align: right;
+}
+/*----------------catalog------------*/
+.cell-catalog{
+    background: #72080c;
+    border: 1px solid #540809;
+    padding: 7px 5px;
+    border-radius: 2px;
+    width: 150px;
+    display: block;
+}
+.cell-catalog:hover {
+    background: #480508;
+}
+.cell-call a {
+    text-decoration: none;
+}
+.margin-call{
+    margin-top: 5px;
+}
+.thumbnail {
+    background: #72080c;
+    border: 1px solid #540809;
+}
+.thumbnail .caption {
+    color: #fff;
+}
+#content .btn-default {
+    color: #72080c;
+}
 /* Large Devices, Wide Screens */
 @media only screen and (max-width: 1200px){
-
+    .menu-top .form-inline .form-control {
+        width: 250px !important;
+    }
+}
+@media only screen and (max-width: 1085px){
+    .menu-top .form-inline .form-control {
+        width: 200px !important;
+    }
 }
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 992px){
 
+}
+@media only screen and (max-width: 984px){
+    .menu-top .form-inline .form-control {
+        width: 150px !important;
+    }
+}
+@media only screen and (max-width: 884px){
+    .menu-top .form-inline .form-control {
+        width: 100px !important;
+    }
+}
+@media only screen and (max-width: 784px){
+    .menu-top .form-inline .form-control {
+        width: 90px !important;
+    }
 }
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px){
@@ -161,10 +232,37 @@ h3{
     .main-search select{
         width: 300px !important;
     }
+    .form-group {
+        margin-bottom: 5px;
+    }
+    .menu-top .form-inline .form-control {
+        width: 300px !important;
+    }
+    .menu-top .form-inline .form-group{
+        display: inline-block;
+    }
+    .menu-top .form-inline {
+        text-align: left;
+    }
 }
 @media (min-width: 768px){
     .navbar {
         border-radius: 0;
+    }
+}
+@media only screen and (max-width: 720px){
+    .menu-top .form-inline .form-control {
+        width: 250px !important;
+    }
+}
+@media only screen and (max-width: 605px){
+    .menu-top .form-inline .form-control {
+        width: 200px !important;
+    }
+}
+@media only screen and (max-width: 505px){
+    .menu-top .form-inline .form-control {
+        width: 150px !important;
     }
 }
 /* Small Devices, Phones */
@@ -173,4 +271,19 @@ h3{
 }
 @media only screen and (max-width: 480px){
 
+}
+@media only screen and (max-width: 460px){
+    .form-search {
+        padding: 20px 40px;
+    }
+}
+@media only screen and (max-width: 405px){
+    .menu-top .form-inline .form-control {
+        width: 130px !important;
+    }
+}
+@media only screen and (max-width: 385px){
+    .form-search {
+        padding: 20px 20px;
+    }
 }
