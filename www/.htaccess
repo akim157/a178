@@ -1,0 +1,25 @@
+#кодировка для сайта
+AddDefaultCharset utf-8
+
+#механизм преобразования
+RewriteEngine On
+#Без www
+RewriteCond %{HTTP_HOST} ^www.myworldit.ru& [NC]
+RewriteRule ^(.*)& http://myworldit.ru/$1 [R=301,L]
+
+#Не было / чтобы было перенаправления
+RewriteBase /
+RewriteCond %{HTTP_HOST} (.*)
+RewriteCond %{REQUEST_URI} /$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)(/)$ $1 [R=301,L]
+
+#Просмотр директорий запретить
+Options -Indexes
+#SSI чтобы запретить 
+Options -Includes
+#Перенаправления на index.php, если директории или файла нету.
+Options +FollowSymlinks
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*) ./?%{QUERY_STRING}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>PHP</title>
+	<meta charset="utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<style>
+		@import "http://webfonts.ru/import/beermoney.css";
+		@import "http://webfonts.ru/import/veles.css";
+		@import "http://webfonts.ru/import/alfaslab.css";
+	</style>
+	<script type="text/javascript" src="js/jquery-1.5.min.js"></script>
+	<script type="text/javascript" src="js/function.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+	<div id="wrapper">
+		<header id="header">
+			<p class="title header_h">myworldit.ru</p>
+			<span class="luchi" id="axis">
+				<img class="object rotate360cw" src="images/shapka/luchi_logo.png" alt="luchi" />
+			</span>
+		</header>
+		<nav id="navigation">
+			<ul class="nav">
+				<li>
+					<a href="index.html" title="Главная страница" class="glav_pages">Главная страница</a>
+				</li>
+				<li>
+					<a href="#" title="Карта сайта" class="map_site">Карта сайта</a>
+				</li>
+				<li>
+					<a href="#" title="От автора" class="ot_avtor">От автора</a>
+				</li>
+			</ul>
+		</nav>
+		<div id="sidebarL">
+			<div id="menu">
+				<header>
+					<h2 class="fon_head">Меню сайта:</h2>
+				</header>
+				<div class="menu" style="margin:10px 0 10px 0;">
+					<div>
+						<a href="#">HTML</a>
+					</div>
+					<div style="margin-left:50px;">
+						<i class="arrow">&nbsp;&nbsp;</i>
+						<a href="#">Основы HTML5</a>						
+					</div>
+					<div style="margin-left:50px;">
+						<i class="arrow">&nbsp;&nbsp;</i>
+						<a href="#">Уроки HTML5</a>						
+					</div>
+					<div>
+						<a href="#">CSS</a>
+					</div>
+					<div>
+						<a href="#">JavaSript</a>
+					</div>
+					<div>
+						<a href="#">PHP</a>
+					</div>
+					<div>
+						<a href="#">MySQL</a>
+					</div>
+					<div>
+						<a href="#">XML</a>
+					</div>
+					<div>
+						<a href="#">CMS Joomla</a>
+					</div>
+					<div>
+						<a href="#">FoxPro</a>
+					</div>
+					<div>
+						<a href="#">Основы</a>
+					</div>
+				</div>
+				<p class="fon_header">Работа с графикой:</p>
+				<div class="menu">
+					<div>
+						<a href="#">CorelDraw</a>
+					</div>
+				</div>
+				<p class="fon_header">Фреймворки:</p>
+				<div class="menu">
+					<div>
+						<a href="#">Laravel</a>
+					</div>
+				</div>
+				<p class="fon_header">VCS:</P>
+				<div class="menu">
+					<div>
+						<a href="#">GIT</a>
+					</div>
+				</div>
+				<p class="fon_header">Интересные статьи:</p>
+				<div class="menu">
+					<div>
+						<a href="#">Плюшки</a>
+					</div>
+				</div>
+				<p class="fon_header">Шпора:</p>
+				<div class="menu">
+					<div>
+						<a href="#">HTML</a>
+					</div>
+					<div>
+						<a href="#">CSS</a>
+					</div>
+					<div>
+						<a href="#">FoxPro</a>
+					</div>
+					<div>
+						<a href="#">CSS таблицы</a>
+					</div>
+					<div>
+						<a href="#">Тутореал</a>
+					</div>
+					<div>
+						<a href="#">Laravel</a>
+					</div>
+				</div>
+			</div>
+			<div id="authorization">
+				<header>
+					<h2 class="fon_head">Авторизация:</h2>
+				</header>
+				<div id="authorization_form">
+					<form name="authorization" action="#" method="post">
+						<p>
+							<label class="cursor" for="login">Логин:</label>
+						</p>
+						<p>
+							<input type="text" name="login" id="login" />
+						</p>
+						<p>
+							<label class="cursor" for="password">Пароль:</label>
+						</p>
+						<p>
+							<input type="password" name="password" id="password" />
+						</p>
+						<p>
+							<input type="submit" class="sub" name="submit_authorization" value="Войти" />
+						</p>
+						<p>
+							<a href="#" id="registration">Регистрация</a>
+						</p>
+						<p>
+							<a href="#" id="forgotYourPassword">Забыли пароль?</a>
+						</p>
+						<p>
+							<a href="#" id="feedback">Написать мне письмо</a>
+						</p>
+					</form>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="sidebarR">
+			<div id="search">
+				<header>
+					<h2 class="fon_head">Поиск</h2>
+				</header>
+				<form name="search" action="#" method="get">
+					<p>
+						<input type="search" name="sear" placeholder="Поиск..." />
+						<input type="submit" value="Найти" class="sub" />
+					</p>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="content">
+			<div class="block">
+				<h2 class="centr box_centr">От автора</h2>
+				<div class="box_centr_div">
+					<p>Дорогие друзья! Мы с вами часто встречаемся с проблемами поиска информации в сети, лазим по форумам, сайтам, чтобы наскрести по сусекам хоть малую долю нужной информации, чаще всего ответ мы находим не развернутый, не полные, а иногда и вообще ни чего не находим. В этой рубрике я решил разместить ответы на самые распространенные вопросы, которые мне, начинающим, да и даже гуру программного мира приходилось искать по огромным просторам мира интернета. Эта рубрика поможет людям, которые готовится к собеседованию на работу, студентам для подготовки к экзаменам и просто для расширения своего кругозора. Она построена в виде вопрос ответ, что очень упрощает поиск, да и восприятия информации. Приятного изучения! :)</p>					
+				</div>
+			</div>
+			<div class="block">
+				<h2 class="centr box_centr">Вопрос ответ:</h2>
+				<ul>
+					<li>
+						<a href="#">PHP</a>
+					</li>
+					<li>
+						<a href="#">ООП</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<footer id="footer">
+			<p class="header_f">&copy; Фёдоров М.А. 2015</p>
+		</footer>
+	</div>
+</body>
+</html>	
