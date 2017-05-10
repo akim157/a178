@@ -4,18 +4,21 @@ class MainController extends Controller {
 	
 	//вывод главной страницы
 	public function actionIndex() {
-		$this->title = "Как создать свой сайт";
-		$this->meta_desc = "Как создать свой сайт? Ответ на этот вопрос находится на этом сайте. Огромное количество материалов по темам: как создать свой сайт и как раскрутить сайт!";
-		$this->meta_key = "как создать свой сайт, создание сайта";
+		$this->title = "a178";
+		$this->meta_desc = "Запчасти на любой вкус";
+		$this->meta_key = "Запчасти, запчасти, разбор";
 		
 		//вывводим статьи
 		$articles = ArticleDB::getAllShow(Config::COUNT_ARTICLES_ON_PAGE, $this->getOffset(Config::COUNT_ARTICLES_ON_PAGE), true);
 		//пагинация
-		$pagination = $this->getPagination(ArticleDB::getCount(), Config::COUNT_ARTICLES_ON_PAGE, "/");		
+		$pagination = $this->getPagination(ArticleDB::getCount(), Config::COUNT_ARTICLES_ON_PAGE, "/");
+		//марка авто
+		$marka = CatalogDB::getAllShowSearch();
 		//блок для центральной части
 		$blog = new Blog();
 		$blog->articles = $articles;
 		$blog->pagination = $pagination;
+		$blog->marki = $marka;
 		$this->render($this->renderData(array("blog" => $blog), "index"));
 	}
 	//метод для вывода каталога марок
@@ -30,6 +33,17 @@ class MainController extends Controller {
 	}
 	public function actionParts(){
 		$id = (int) $this->request->id;
+		$sin = (int) $this->request->sin;
+		if($sin == 1) {
+			$parts = MarkiDB::getPartsAvto($id);
+			$json = json_encode ($parts);
+			header('Content-type: text/javascript','; charset= utf-8');
+			echo $json;
+			exit;
+		} else {
+			$parts = PartsDB::getParts($id);
+			$this->render($this->renderData(array("parts" => $parts), "parts"));
+		}
 	}
 	//метод для вывода контактов
 	public function actionContact(){
@@ -182,7 +196,6 @@ class MainController extends Controller {
 		//комментарии
 		$comments = CommentDB::getAllOnArticleID($article_db->id);
 		$article->comments = $comments;
-		
 		$this->render($article);
 	}
 	//метод для опроса
@@ -439,7 +452,21 @@ class MainController extends Controller {
 		$sr->field = "full";
 		$sr->query = $this->request->query;
 		$sr->data = $articles;
+		$this->render($sr);
+	}
+	//расширенный поиск
+	public function actionExtesearch(){
+		if($this->request->model){
+			$parts = PartsDB::getParts($this->request->model);
+		}
+		else
+			$parts = MarkiDB::getPartsID($this->request->marka);
 		
+		$sr = new Extesearch();
+		if (mb_strlen($this->request->query) < Config::MIN_SEARCH_LEN) $sr->error_len = true;
+		$sr->field = "full";
+		$sr->query = '';
+		$sr->data = $parts;
 		$this->render($sr);
 	}
 	//получения формы для email

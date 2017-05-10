@@ -75,6 +75,28 @@ $(document).ready(function(){
         $('.imagepreview').attr('src', $(this).find('img').attr('src'));
         $('#imagemodal').modal('show');
     });
+
+    $('#marka').on('change',function(){
+        var id = $('#marka option:selected').val();
+        if(id < 1) return false;
+        var url = '/parts?id='+id+'&sin=1';
+        $.ajax({
+            type: 'POST',
+            url: url,
+            dataType: 'json'
+        }).done(function(data) {
+            if(typeof data == 'undefined') return false;
+            $('#model-avto').empty();
+            var select = '<option value="0">Модель авто</option>';
+            if(data.length > 0) {
+                for(var i = 0; i < data.length; i++) {
+                    select += '<option value="' + data[i]['id'] + '">' + data[i]['name'] + '</option>';
+                }
+            }
+            if(select == '') return false;
+            $('#model-avto').append(select);
+        });
+    });
 });
 
 function height_window(){

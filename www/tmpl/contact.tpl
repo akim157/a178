@@ -22,3 +22,6 @@
         </div>
     </div>
 </section>
+<script src="//api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+<script src="//yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
+<script src="js/map.js"></script>

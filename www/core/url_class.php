@@ -63,8 +63,13 @@ class URL {
 	разбор url адреса, который был запрошен пользователем*/
 	public static function getControllerAndAction() {
 		//получаем uri который был запрошен
-		$uri = $_SERVER["REQUEST_URI"];		
-		$uri = UseSEF::getRequest($uri);		
+		$uri = $_SERVER["REQUEST_URI"];
+		$patten = '/\/([a-z]+)\?(img|id|doc)\=[0-9a-z]+/';
+		preg_match($patten, $uri, $struri);
+		if(!empty($struri)) {
+			if($struri[1] !== 'parts') $uri = UseSEF::getRequest($uri);
+		} else 
+			$uri = UseSEF::getRequest($uri);
 		//если uri нет то возвращаем 404 ошибку
 		if (!$uri) return array("Main", "404");
 		//присваем пременным значения, дополненного массива

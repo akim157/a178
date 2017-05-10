@@ -130,7 +130,7 @@ class ArticleDB extends ObjectDB {
 	
 	public function search($words) {
 		$select = self::getBaseSelect();
-		$articles = self::searchObjects($select, __CLASS__, array("title", "full"), $words, Config::MIN_SEARCH_LEN);
+		$articles = self::searchObjects($select, __CLASS__, array("title", "number"), $words, Config::MIN_SEARCH_LEN);
 		foreach ($articles as $article) $article->setSectionAndCategory();
 		return $articles;
 	}

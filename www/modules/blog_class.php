@@ -8,6 +8,7 @@ class Blog extends Module {
 		$this->add("articles", null, true);
 		$this->add("more_articles", null, true);
 		$this->add("pagination");
+		$this->add("marki");
 	}
 	
 	public function preRender() {

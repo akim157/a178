@@ -13,6 +13,8 @@ abstract class AbstractSelect {
 	//лимит количества извлекающих записей
 	private $limit = "";
 	
+	private $join = "";
+	
 	/*конструктор принимает объект database*/
 	public function __construct($db){
 		//иницилизируем его
@@ -46,7 +48,8 @@ abstract class AbstractSelect {
 					$from .= substr($fields[$i], 0, $pos_1)."(`".substr($fields[$i], $pos_1 + 1, $pos_2 - $pos_1 - 1)."`),";					
 				}
 				//если не функция то просто перечислям через запятую
-				else $from .= "`".$fields[$i]."`,";
+				//else $from .= "`".$fields[$i]."`,";
+				else $from .= $fields[$i].",";
 			}
 			//удаляю последнюю запятую
 			$from = substr($from, 0, -1);
@@ -144,7 +147,12 @@ abstract class AbstractSelect {
 		//возвращаем объект
 		return $this;
 	}
-	
+	public function join($id = 0){
+		if($id < 1) return false;
+		$join = 'a left join `myit_parts_types` p on a.id_part = p.id where a.id_part = '.$id;
+		$this->join = $join;
+		return $this;
+	}
 	/*метод отвечающий за количества записей*/
 	public function limit($count, $offset = 0){
 		/*
@@ -172,7 +180,7 @@ abstract class AbstractSelect {
 	/*преобразования объекта в строку для вывода*/
 	public function __toString(){
 		//если поле from true формируем запрос select
-		if($this->from) $ret = "SELECT ".$this->from." ".$this->where." ".$this->order." ".$this->limit;
+		if($this->from) $ret = "SELECT ".$this->from." ".$this->join." ".$this->where." ".$this->order." ".$this->limit;
 		else $ret = "";
 		//возвращаем сфорсмированный запрос select в виде строки для объекта
 		return $ret;

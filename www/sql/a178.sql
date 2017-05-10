@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 10 2017 г., 12:57
+-- Время создания: Май 10 2017 г., 21:34
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `myit_articles` (
   `date` int(11) unsigned NOT NULL,
   `meta_desc` varchar(255) NOT NULL,
   `meta_key` varchar(255) NOT NULL,
+  `number` varchar(255) DEFAULT NULL,
   `id_part` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
@@ -45,12 +46,12 @@ CREATE TABLE IF NOT EXISTS `myit_articles` (
 -- Дамп данных таблицы `myit_articles`
 --
 
-INSERT INTO `myit_articles` (`id`, `title`, `img`, `intro`, `full`, `section_id`, `cat_id`, `date`, `meta_desc`, `meta_key`, `id_part`) VALUES
-(1, 'Запчасть 1', 'img.jpg', 'Короткое описание', 'Длииииииииное описание', 1, 1, 1402084346, 'Запчасть 1', 'запчасть, запчасти', 1),
-(2, 'Запчасть 2', 'img.jpg', 'Короткое описание', 'Длииииииииное описание', 1, 1, 1402084286, 'Запчасть 2', 'запчасть, запчасти', 1),
-(3, 'Запчасть 3', 'img.jpg', 'Короткое описание', 'Длииииииииное описание', 1, 1, 1402084285, 'Запчасть 3', 'запчасть, запчасти', 2),
-(4, 'Запчасть 4', 'img.jpg', 'Короткое описание\n\n', 'Длииииииииное описание\n\n', 1, 1, 1402084280, 'Запчасть 4', 'запчасть, запчасти', 2),
-(5, 'Запчасть 5', 'img.jpg', 'Короткое описание\n', 'Длииииииииное описание\n\n', 1, 1, 1402084279, 'Запчасть 5', 'запчасть, запчасти', 3);
+INSERT INTO `myit_articles` (`id`, `title`, `img`, `intro`, `full`, `section_id`, `cat_id`, `date`, `meta_desc`, `meta_key`, `number`, `id_part`) VALUES
+(1, 'Запчасть 1', 'img.jpg', 'Короткое описание', 'Длииииииииное описание', 1, 1, 1402084346, 'Запчасть 1', 'запчасть, запчасти', '555', 1),
+(2, 'Запчасть 2', 'img.jpg', 'Короткое описание', 'Длииииииииное описание', 1, 1, 1402084286, 'Запчасть 2', 'запчасть, запчасти', '666', 1),
+(3, 'Запчасть 3', 'img.jpg', 'Короткое описание', 'Длииииииииное описание', 1, 1, 1402084285, 'Запчасть 3', 'запчасть, запчасти', '777', 2),
+(4, 'Запчасть 4', 'img.jpg', 'Короткое описание\n\n', 'Длииииииииное описание\n\n', 1, 1, 1402084280, 'Запчасть 4', 'запчасть, запчасти', '888', 2),
+(5, 'Запчасть 5', 'img.jpg', 'Короткое описание\n', 'Длииииииииное описание\n\n', 1, 1, 1402084279, 'Запчасть 5', 'запчасть, запчасти', '999', 3);
 
 -- --------------------------------------------------------
 
@@ -314,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `myit_sef` (
   `link` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
 
 --
 -- Дамп данных таблицы `myit_sef`
@@ -343,7 +344,11 @@ INSERT INTO `myit_sef` (`id`, `link`, `alias`) VALUES
 (22, '/help', 'help'),
 (23, '/marki?id=6', 'bently'),
 (24, '/marki?id=7', 'acura'),
-(25, '/marki?id=8', 'hreny');
+(25, '/marki?id=8', 'hreny'),
+(27, '/parts?id=2', 'kapot'),
+(28, '/parts?id=3', 'bamper_audi'),
+(29, '/article?id=5', 'zapchasty1'),
+(30, '/extesearch', 'extesearch');
 
 -- --------------------------------------------------------
 
