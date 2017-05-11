@@ -459,8 +459,9 @@ class MainController extends Controller {
 		if($this->request->model){
 			$parts = PartsDB::getParts($this->request->model);
 		}
-		else
+		else {
 			$parts = MarkiDB::getPartsID($this->request->marka);
+		}
 		
 		$sr = new Extesearch();
 		if (mb_strlen($this->request->query) < Config::MIN_SEARCH_LEN) $sr->error_len = true;

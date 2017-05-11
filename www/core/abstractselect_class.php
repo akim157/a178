@@ -149,7 +149,7 @@ abstract class AbstractSelect {
 	}
 	public function join($id = 0){
 		if($id < 1) return false;
-		$join = 'a left join `myit_parts_types` p on a.id_part = p.id where a.id_part = '.$id;
+		$join = 'a left join `myit_parts_types` p on a.id_part = p.id left join `myit_marka` m on p.id_marka = m.id where a.id_part = '.$id;
 		$this->join = $join;
 		return $this;
 	}

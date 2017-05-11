@@ -3,7 +3,15 @@
 		<div class="section-cell">
 			<div class="section-center form-search">
 				<h2>Найти нужную деталь</h2>
-				<form class="form-inline" name="search" action="/search.html" method="get">
+				<div class="alert alert-warning warning-search">
+					<span class="close">X</span>
+					<strong>Предупреждение!</strong> Вы не ввели данные в строку поиска.
+				</div>
+				<div class="alert alert-warning warning-extended-search">
+					<span class="close">X</span>
+					<strong>Предупреждение!</strong> Вы не выбрали данные в фильтре.
+				</div>
+				<form class="form-inline" name="search" action="/search.html" method="post" onSubmit="return validatorSearch()">
 					<div class="form-group">
 						<label class="sr-only" for="search">Email address</label>
 						<input type="search" class="form-control" id="search" placeholder="поиск" name="query">
@@ -12,7 +20,7 @@
 				</form>
 				<a href="#" class="click-search">Расширенный поиск</a>
 				<div class="main-search">
-					<form class="form-inline" name="extended_search" action="/extesearch.html" method="get">
+					<form class="form-inline" name="extended_search" action="/extesearch.html" method="post" onSubmit="return validatorExtendedSearch()">
 						<div class="form-group">
 							<select name="marka" id="marka" class="form-control">
 								<option value="0">Марка авто</option>

@@ -23,10 +23,10 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#" class="entrance">вход</a></li>
-					<li><a href="register.html">регистрация</a></li>
+					<li><a href="/register.html">регистрация</a></li>
 				</ul>
 				<div class="auto">
-					<form class="form-inline">
+					<form class="form-inline" name="auth" action="/" method="post">
 						<div class="form-group">
 							<label class="sr-only" for="exampleInputEmail3">Email address</label>
 							<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">

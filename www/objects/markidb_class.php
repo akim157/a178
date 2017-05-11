@@ -24,7 +24,6 @@ class MarkiDB extends ObjectDB {
         if($id < 1) return false;
         $select = self::getBaseSelect();
         $select->where("`id_marka` = ".self::$db->getSQ(), array($id));
-        echo $select;
         $data = self::$db->select($select);
         $parts = ObjectDB::buildMultiple(__CLASS__, $data);
         if ($post_handling) foreach ($parts as $part) $part->postHandling();

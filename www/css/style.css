@@ -194,6 +194,42 @@ h3{
 #content .btn-default {
     color: #72080c;
 }
+.warning-search,
+.warning-extended-search {
+    display:none;
+}
+.warning-search .close,
+.warning-extended-search .close{
+    font-size: 14px;
+    line-height: 0;
+    padding-bottom: 5px;
+}
+#search_result .cell-catalog{
+    width: 100%;
+}
+#search_result .cell-catalog:hover{
+    background: #72080c;
+}
+.search_markery{
+    list-style-type: none;
+}
+.search_markery li:last-child{
+    margin-left: 15px;
+}
+.cell-col{
+    margin-bottom: 5px;
+}
+.cell-col .cell-catalog,
+.part-call-opis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.margin-call h4,
+.zapchasti-avto h4 {
+    margin-left: 15px;
+}
+
 /* Large Devices, Wide Screens */
 @media only screen and (max-width: 1200px){
     .menu-top .form-inline .form-control {

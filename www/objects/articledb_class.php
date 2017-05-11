@@ -27,6 +27,8 @@ class ArticleDB extends ObjectDB {
 		$this->add("date", "ValidateDate", self::TYPE_TIMESTAMP, $this->getDate());
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");
+		$this->add("number", "ValidateText");
+		$this->add("state", "ValidateText");
 	}
 	//обработка события после инициализации
 	protected function postInit() {
