@@ -116,6 +116,7 @@ $(document).ready(function(){
     });
 
     $('[data-toggle="tooltip"]').tooltip();
+    
 });
 
 function height_window(){

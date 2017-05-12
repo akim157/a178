@@ -49,6 +49,10 @@ class Form extends ModuleHornav {
 	public function submit($value, $name = false) {
 		$this->input($name, "submit", "", $value);
 	}
+	//поле выборки
+	public function select($name, $label = "", $value = array(), $default_v= "", $selected = "") {
+		$this->input($name, "select", $label, $value, $default_v, $selected);
+	}
 	//создаем объект для построение input
 	private function input($name, $type, $label, $value = false, $default_v = false) {
 		$cl = new stdClass();

@@ -40,10 +40,10 @@ class CatalogDB extends ObjectDB {
         return true;
     }
     //����� ��� ��������� ���� �������
-    public static function getAll($post_handling = false){
+    public static function getAll($getObj = true, $post_handling = false){
         $select = self::getBaseSelect();
-        $data = self::$db->select($select);
-        $catalog = ObjectDB::buildMultiple(__CLASS__, $data);
+        $catalog = self::$db->select($select);
+        if($getObj) $catalog = ObjectDB::buildMultiple(__CLASS__, $catalog);
         if ($post_handling) foreach ($catalog as $article) $article->postHandling();
         return $catalog;
     }
