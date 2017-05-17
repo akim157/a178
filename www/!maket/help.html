@@ -71,6 +71,11 @@
                         border: 1px solid rgb(214, 32, 18);
                     }
                 </style>
+                <script>
+                    function cloneBlock(){
+                        $('.description_parts').clone().appendTo('.description_parts1');
+                    }
+                </script>
                 <div class="col-md-10 help  col-md-push-1">
                     <h1 class="text-center">Форма VIN-запроса</h1>
                     <h4>Данные автомобиля</h4>
@@ -95,24 +100,24 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <select name="year" id="year" class="form-control">
-                                    <option value="0">Выпуск</option>
-                                    <option value="2001">2001</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2004">2004</option>
-                                    <option value="2005">2005</option>
-                                </select>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select name="year" id="year" class="form-control form-border">
+                                        <option value="0">Выпуск</option>
+                                        <option value="2001">2001</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2003">2003</option>
+                                        <option value="2004">2004</option>
+                                        <option value="2005">2005</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-border" id="exampleInputVin" placeholder="VIN-код" name="vin">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputVin" placeholder="VIN-код" name="vin">
-                            </div>
-                        </div>
-                    </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -206,25 +211,32 @@
                         </div>
                         <h4>Названия или описания запчастей</h4>
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="text" name="part_name" id="part_name" placeholder="Наименование" class="form-control">
+                            <div class="description_parts">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" name="part_name" id="part_name" placeholder="Наименование" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="text" name="part_article" id="part_article" placeholder="Артикул" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" name="part_count" id="part_count" placeholder="Кол-во" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="text" name="part_note" id="part_note" placeholder="Примечание" class="form-control">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <input type="text" name="part_article" id="part_article" placeholder="Артикул" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <input type="text" name="part_count" id="part_count" placeholder="Кол-во" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <input type="text" name="part_note" id="part_note" placeholder="Примечание" class="form-control">
-                                </div>
+                            <div class="col-md-12">
+                                    <span onClick="cloneBlock()">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </span>
                             </div>
                         </div>
                         <h4>Контактные данные</h4>
