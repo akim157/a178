@@ -114,8 +114,23 @@ $(document).ready(function(){
     $('.warning-extended-search .close').on('click', function(){
         $('.warning-extended-search').css( "display", "block" ).fadeOut( 1000 );
     });
+    $('.warning-extended-vin .close').on('click', function(){
+        $('.warning-extended-vin').css( "display", "block" ).fadeOut( 1000 );
+    });
+    $('.warning-extended-contact .close').on('click', function(){
+        $('.warning-extended-contact').css( "display", "block" ).fadeOut( 1000 );
+    });
 
     $('[data-toggle="tooltip"]').tooltip();
+
+    $('span#add').click(function(){
+        $('.abcd:last').clone(true).appendTo('.wrapper');
+    });
+    $('span#remove').click(function(){
+        var count = $('.abcd').length;
+        if(count > 1) $(this).closest('.abcd').remove();
+        else $('.warning-extended-search').show(400);
+    });
     
 });
 
@@ -145,6 +160,41 @@ function validatorExtendedSearch(){
     var marka = $('#marka option:selected').val();
     if(marka < 1) {
         $('.warning-extended-search').show(400);
+        return false;
+    }
+    return true;
+}
+
+function formVin(){
+    var errors = '';
+    $('.warning-extended-vin .block_vin').empty();
+    $('.warning-extended-contact .block_vin').empty();
+    var mrka = $('#mrka').val();
+    var exampleInputModel = $('#exampleInputModel').val().trim();
+    exampleInputModel = exampleInputModel.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/\'/g, "&rsquo;");
+    var year = $('#year').val();
+    var exampleInputVin = $('#exampleInputVin').val().trim();
+    exampleInputVin = exampleInputVin.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/\'/g, "&rsquo;");
+    if(mrka == 0) errors += '<strong>Предупреждение!</strong> Вы не указали марку автомабиля<br>';
+    if(exampleInputModel == '') errors += '<strong>Предупреждение!</strong> Вы не указали модель<br>';
+    if(year == 0) errors += '<strong>Предупреждение!</strong> Вы не указали год выпуска<br>';
+    if(exampleInputVin == '') errors += '<strong>Предупреждение!</strong> Вы не указали VIN-код<br>';
+    if(errors != '') {
+        $('.warning-extended-vin .block_vin').append(errors);
+        $('.warning-extended-vin').show(400);
+        return false;
+    }
+    var str = '';
+    var email = $('#email').val().trim();
+    if(email != '') {
+        var e = email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+        if (!e){
+            str += '<strong>Предупреждение!</strong> Вы не верно указали почту. Почта должна быть формата: mail@mail.com <br>';
+        }
+    }
+    if(str != ''){
+        $('.warning-extended-contact .block_vin').append(str);
+        $('.warning-extended-contact').show(400);
         return false;
     }
     return true;

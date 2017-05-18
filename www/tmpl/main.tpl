@@ -19,5 +19,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
+<script src="http://js.nicdn.de/bootstrap/formhelpers/docs/assets/js/bootstrap-formhelpers-phone.format.js"></script>
+<script src="http://js.nicdn.de/bootstrap/formhelpers/docs/assets/js/bootstrap-formhelpers-phone.js"></script>
 </body>
 </html>

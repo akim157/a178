@@ -59,15 +59,17 @@ class MainController extends Controller {
 	}
 	//метод для вывода помощь
 	public function actionHelp(){
-//		//вывводим статьи
-//		$articles = ArticleDB::getAllShow(Config::COUNT_ARTICLES_ON_PAGE, $this->getOffset(Config::COUNT_ARTICLES_ON_PAGE), true);
-//		//пагинация
-//		$pagination = $this->getPagination(ArticleDB::getCount(), Config::COUNT_ARTICLES_ON_PAGE, "/");
-//		//блок для центральной части
-//		$blog = new Blog();
-//		$blog->articles = $articles;
-//		$blog->pagination = $pagination;
-//		$this->render($this->renderData(array("blog" => $blog),"help"));
+			//вывводим статьи
+			$help = HelpDB::setVinForm($this->request);
+			$articles = ArticleDB::getAllShow(Config::COUNT_ARTICLES_ON_PAGE, $this->getOffset(Config::COUNT_ARTICLES_ON_PAGE), true);
+			//пагинация
+			$pagination = $this->getPagination(ArticleDB::getCount(), Config::COUNT_ARTICLES_ON_PAGE, "/");
+			//блок для центральной части
+			$blog = new Blog();
+			$blog->articles = $articles;
+			$blog->pagination = $pagination;
+			$this->render($this->renderData(array("blog" => $blog),"help"));
+
 //		$form = new Form();
 ////		$form->hornav = $hornav;
 //		$form->header = "Регистрация";
@@ -88,59 +90,59 @@ class MainController extends Controller {
 //		$form->addJSV("password", $this->jsv->password("password_conf"));
 //		$form->addJSV("captcha", $this->jsv->captcha());
 
-		$marki = CatalogDB::getAll(false);
-		$years = array();
-		for($i=1; $i<30; $i++){
-			$year = date('Y') - $i;
-			$years[$i]['id'] = $year;
-			$years[$i]['name'] = $year;
-		}
-		$body_type = array(
-			'Седан',
-			'Хэтчбэк',
-			'Универсал',
-			'Джип',
-			'Купе',
-			'Кабриолет',
-			'Минивэн',
-			'Микроавтобус'
-		);
-		$i = 0;
-		foreach($body_type as $val){
-			$body_types[$i]['id'] = $val;
-			$body_types[$i]['name'] = $val;
-			$i++;
-		}
-		$doors = array();
-		for($i=2; $i<8; $i++) {
-			$doors[$i]['id'] = $i;
-			$doors[$i]['name'] = $i;
-		}
-		$drive = array('Передний', 'Задний', 'Полный');
-		for($i=0; $i<3; $i++){
-			$drivers[$i]['id'] = $i;
-			$drivers[$i]['name'] = $drive[$i];
-		}
-		$form = new Form();
-//		$form->hornav = $hornav;
-		$form->header = "Форма VIN-запроса";
-		$form->name = "vin_query";
-		$form->action = URL::current();
-//		$form->message = $this->fp->getSessionMessage($message_name);
-		$form->select('marki','Выберите марку автомабиля', $marki);
-		$form->text('model','Модель', $this->request->model);
-		$form->select('years','Укажите год', $years);
-		$form->text('vin','VIN-код', $this->request->vin);
-		$form->text('type','Тип/буквы двигателя', $this->request->type);
-		$form->select('body_types','Тип кузова', $body_type);
-		$form->select('door','Число дверей', $doors);
-		$form->select('drive_unit','Привод', $drivers);
-		$form->password("password_reset", "Новый пароль:");
-		$form->password("password_reset_conf", "Повторите пароль:");
-		$form->submit("Далее");
-
-		$form->addJSV("password_reset", $this->jsv->password("password_reset_conf"));
-		$this->render($form);
+//		$marki = CatalogDB::getAll(false);
+//		$years = array();
+//		for($i=1; $i<30; $i++){
+//			$year = date('Y') - $i;
+//			$years[$i]['id'] = $year;
+//			$years[$i]['name'] = $year;
+//		}
+//		$body_type = array(
+//			'Седан',
+//			'Хэтчбэк',
+//			'Универсал',
+//			'Джип',
+//			'Купе',
+//			'Кабриолет',
+//			'Минивэн',
+//			'Микроавтобус'
+//		);
+//		$i = 0;
+//		foreach($body_type as $val){
+//			$body_types[$i]['id'] = $val;
+//			$body_types[$i]['name'] = $val;
+//			$i++;
+//		}
+//		$doors = array();
+//		for($i=2; $i<8; $i++) {
+//			$doors[$i]['id'] = $i;
+//			$doors[$i]['name'] = $i;
+//		}
+//		$drive = array('Передний', 'Задний', 'Полный');
+//		for($i=0; $i<3; $i++){
+//			$drivers[$i]['id'] = $i;
+//			$drivers[$i]['name'] = $drive[$i];
+//		}
+//		$form = new Form();
+////		$form->hornav = $hornav;
+//		$form->header = "Форма VIN-запроса";
+//		$form->name = "vin_query";
+//		$form->action = URL::current();
+////		$form->message = $this->fp->getSessionMessage($message_name);
+//		$form->select('marki','Выберите марку автомабиля', $marki);
+//		$form->text('model','Модель', $this->request->model);
+//		$form->select('years','Укажите год', $years);
+//		$form->text('vin','VIN-код', $this->request->vin);
+//		$form->text('type','Тип/буквы двигателя', $this->request->type);
+//		$form->select('body_types','Тип кузова', $body_type);
+//		$form->select('door','Число дверей', $doors);
+//		$form->select('drive_unit','Привод', $drivers);
+//		$form->password("password_reset", "Новый пароль:");
+//		$form->password("password_reset_conf", "Повторите пароль:");
+//		$form->submit("Далее");
+//
+//		$form->addJSV("password_reset", $this->jsv->password("password_reset_conf"));
+//		$this->render($form);
 	}
 	//метод для вывода формы регистрации
 	public function actionRegister(){
@@ -450,7 +452,7 @@ class MainController extends Controller {
 				$form->header = "Восстановление пароля";
 				$form->name = "reset_password";
 				$form->action = URL::current();
-				$from->message = $this->fp->getSessionMessage($message_name);
+				$form->message = $this->fp->getSessionMessage($message_name);
 				$form->password("password_reset", "Новый пароль:");
 				$form->password("password_reset_conf", "Повторите пароль:");
 				$form->submit("Далее");

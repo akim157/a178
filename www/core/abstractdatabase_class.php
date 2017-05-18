@@ -150,7 +150,8 @@ abstract class AbstractDataBase {
 	public function insert($table_name, $row){
 		/*table_name - название таблицы, куда должны пойти данные
 		row - сами данные, ключи название столбца*/
-		
+		print_r($row);
+		exit;
 		//проверка на данные, если данных нет то возвращаем false
 		if(count($row) == 0) return false;
 		//получаем название таблицы с префиксом, с помощью метода getTableName

@@ -70,16 +70,27 @@
                     .form-border{
                         border: 1px solid rgb(214, 32, 18);
                     }
-                </style>
-                <script>
-                    function cloneBlock(){
-                        $('.description_parts').clone().appendTo('.description_parts1');
+                    .remove {
+                        margin-top: 10px;
+                        margin-right: 0px;
                     }
-                </script>
+                    .cursor{
+                        cursor: pointer;
+                    }
+                    .warning-extended-search,
+                    .warning-extended-vin,
+                    .warning-extended-contact{
+                        display:none;
+                    }
+                </style>
                 <div class="col-md-10 help  col-md-push-1">
                     <h1 class="text-center">Форма VIN-запроса</h1>
                     <h4>Данные автомобиля</h4>
-                    <form class="text-center">
+                    <div class="alert alert-warning warning-extended-vin">
+                        <span class="close">X</span>
+                        <span class="block_vin"></span>
+                    </div>
+                    <form class="text-center" onsubmit="return formVin();">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -100,24 +111,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <select name="year" id="year" class="form-control form-border">
-                                        <option value="0">Выпуск</option>
-                                        <option value="2001">2001</option>
-                                        <option value="2002">2002</option>
-                                        <option value="2003">2003</option>
-                                        <option value="2004">2004</option>
-                                        <option value="2005">2005</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-border" id="exampleInputVin" placeholder="VIN-код" name="vin">
-                                </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select name="year" id="year" class="form-control form-border">
+                                    <option value="0">Выпуск</option>
+                                    <option value="2001">2001</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2005">2005</option>
+                                </select>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-border" id="exampleInputVin" placeholder="VIN-код" name="vin">
+                            </div>
+                        </div>
+                    </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -210,8 +221,12 @@
                             </div>
                         </div>
                         <h4>Названия или описания запчастей</h4>
-                        <div class="row">
-                            <div class="description_parts">
+                        <div class="alert alert-warning warning-extended-search">
+                            <span class="close">X</span>
+                            <strong>Предупреждение!</strong> Нельзя удалять все строки.
+                        </div>
+                        <div class="row wrapper">
+                            <div class="description_parts abcd">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <input type="text" name="part_name" id="part_name" placeholder="Наименование" class="form-control">
@@ -227,19 +242,30 @@
                                         <input type="text" name="part_count" id="part_count" placeholder="Кол-во" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <input type="text" name="part_note" id="part_note" placeholder="Примечание" class="form-control">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                    <span onClick="cloneBlock()">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                <div class="col-md-1 remove">
+                                    <span id="remove" class="cursor">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
                                     </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span id="add" class="cursor" data-toggle="tooltip" data-placement="bottom" title="Добавить новое описание запчастей">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </span>
                             </div>
                         </div>
                         <h4>Контактные данные</h4>
+                        <div class="alert alert-warning warning-extended-contact">
+                            <span class="close">X</span>
+                            <span class="block_vin"></span>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -257,7 +283,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" name="phone" id="phone" placeholder="Контактный телефон" class="form-control">
+                                    <input type="text" name="phone" id="phone" placeholder="Контактный телефон" class="form-control bfh-phone"  data-format="+7 (ddd) ddd-dd-dd">
                                 </div>
                             </div>
                         </div>
@@ -286,5 +312,67 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
+<script src="http://js.nicdn.de/bootstrap/formhelpers/docs/assets/js/bootstrap-formhelpers-phone.format.js"></script>
+<script src="http://js.nicdn.de/bootstrap/formhelpers/docs/assets/js/bootstrap-formhelpers-phone.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('span#add').click(function(){
+            $('.abcd:last').clone(true).appendTo('.wrapper');
+        });
+        $('span#remove').click(function(){
+            var count = $('.abcd').length;
+            if(count > 1) $(this).closest('.abcd').remove();
+            else $('.warning-extended-search').show(400);
+        });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        $('.warning-extended-search .close').on('click', function(){
+            $('.warning-extended-search').css( "display", "block" ).fadeOut( 1000 );
+        });
+        $('.warning-extended-vin .close').on('click', function(){
+            $('.warning-extended-vin').css( "display", "block" ).fadeOut( 1000 );
+        });
+        $('.warning-extended-contact .close').on('click', function(){
+            $('.warning-extended-contact').css( "display", "block" ).fadeOut( 1000 );
+        });
+    });
+
+    function formVin(){
+        var errors = '';
+        $('.warning-extended-vin .block_vin').empty();
+        $('.warning-extended-contact .block_vin').empty();
+        var mrka = $('#mrka').val();
+        var exampleInputModel = $('#exampleInputModel').val().trim();
+        exampleInputModel = exampleInputModel.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/\'/g, "&rsquo;");
+        var year = $('#year').val();
+        var exampleInputVin = $('#exampleInputVin').val().trim();
+        exampleInputVin = exampleInputVin.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/\'/g, "&rsquo;");
+        if(mrka == 0) errors += '<strong>Предупреждение!</strong> Вы не указали марку автомабиля<br>';
+        if(exampleInputModel == '') errors += '<strong>Предупреждение!</strong> Вы не указали модель<br>';
+        if(year == 0) errors += '<strong>Предупреждение!</strong> Вы не указали год выпуска<br>';
+        if(exampleInputVin == '') errors += '<strong>Предупреждение!</strong> Вы не указали VIN-код<br>';
+        if(errors != '') {
+            $('.warning-extended-vin .block_vin').append(errors);
+            $('.warning-extended-vin').show(400);
+            return false;
+        }
+        var str = '';
+        var email = $('#email').val().trim();
+        if(email != '') {
+            var e = email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+            if (!e){
+                str += '<strong>Предупреждение!</strong> Вы не верно указали почту. Почта должна быть формата: mail@mail.com <br>';
+            }
+        }
+        if(str != ''){
+            $('.warning-extended-contact .block_vin').append(str);
+            $('.warning-extended-contact').show(400);
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>

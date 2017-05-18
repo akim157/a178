@@ -199,7 +199,9 @@ h3{
     display:none;
 }
 .warning-search .close,
-.warning-extended-search .close{
+.warning-extended-search .close,
+.warning-extended-vin .close,
+.warning-extended-contact .close{
     font-size: 14px;
     line-height: 0;
     padding-bottom: 5px;
@@ -228,6 +230,39 @@ h3{
 .margin-call h4,
 .zapchasti-avto h4 {
     margin-left: 15px;
+}
+.group-form-vin {
+    width: 118px !important;
+    display: inline-block;
+    margin-right: 20px;
+}
+.group-form-vin:last-child{
+    margin-right: 0;
+}
+.group-form-vin  label{
+    padding-left: 0;
+    text-align: center;
+}
+.capacity {
+    margin-top: 22px;
+}
+.btn-search{
+    color: #ffffff !important;
+}
+.form-border{
+    border: 1px solid rgb(214, 32, 18);
+}
+.remove {
+    margin-top: 10px;
+    margin-right: 0px;
+}
+.cursor{
+    cursor: pointer;
+}
+.warning-extended-search,
+.warning-extended-vin,
+.warning-extended-contact{
+    display:none;
 }
 
 /* Large Devices, Wide Screens */
