@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 11 2017 г., 21:14
+-- Время создания: Май 18 2017 г., 20:39
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -368,6 +368,40 @@ CREATE TABLE IF NOT EXISTS `myit_users` (
   `activation` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `myit_vin_form`
+--
+
+CREATE TABLE IF NOT EXISTS `myit_vin_form` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `marka` varchar(255) NOT NULL,
+  `model` varchar(255) NOT NULL,
+  `year` varchar(255) NOT NULL,
+  `vin` varchar(255) NOT NULL,
+  `body_type` varchar(255) NOT NULL,
+  `drive_type` varchar(255) NOT NULL,
+  `door` varchar(255) NOT NULL,
+  `drive_unit` varchar(255) NOT NULL,
+  `air_conditioning` varchar(255) NOT NULL,
+  `hydraulic_booster` varchar(255) NOT NULL,
+  `turbo` varchar(255) NOT NULL,
+  `engine_capacity` varchar(255) NOT NULL,
+  `type_kpp` varchar(255) NOT NULL,
+  `infa_dop` varchar(255) NOT NULL,
+  `part_name` varchar(255) NOT NULL,
+  `part_article` varchar(255) NOT NULL,
+  `part_count` varchar(255) NOT NULL,
+  `part_note` varchar(255) NOT NULL,
+  `fio` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `date` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
