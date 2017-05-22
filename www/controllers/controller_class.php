@@ -216,15 +216,15 @@ abstract class Controller extends AbstractController {
 	
 	//авторизация пользователя
 	protected function authUser() {
-		$login = "";
+		$email = "";
 		$password = "";
 		$redirect = false;
 		if ($this->request->auth) {
-			$login = $this->request->login;
+			$email = $this->request->email;
 			$password = $this->request->password;
 			$redirect = true;
 		}
-		$user = $this->fp->auth("auth", "UserDB", "authUser", $login, $password);
+		$user = $this->fp->auth("auth", "UserDB", "authUser", $email, $password);
 		if ($user instanceof UserDB) {
 			if ($redirect) $this->redirect(URL::current());
 			return $user;

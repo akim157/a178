@@ -57,10 +57,45 @@ class MainController extends Controller {
 		$blog->pagination = $pagination;
 		$this->render($this->renderData(array("blog" => $blog),"contact"));
 	}
+	public function actionSuccess(){
+		$blog = new Blog();
+		$this->render($this->renderData(array("blog" => $blog),"success"));
+	}
 	//метод для вывода помощь
 	public function actionHelp(){
 			//вывводим статьи
-			$help = HelpDB::setVinForm($this->request);
+//			$help = HelpDB::setVinForm($this->request);
+		if($this->request->marka != '') {
+			$vin = new VinFormDB();
+			$checks[] = array(true, true, "ERROR_PASSWORD_CURRENT");
+			$message_fields_profession = $fields = array("marka",
+				                               "model",
+				                               "year",
+			                                   "vin",
+											   "body_type",
+			                                   "drive_type",
+			                                   "door",
+				                               "drive_unit",
+											   "air_conditioning",
+											   "hydraulic_booster",
+				                               "turbo",
+			                                   "engine_capacity",
+				                               "type_kpp",
+				                               "infa_dop",
+				                               "part_name",
+			                                   "part_article",
+				                               "part_count",
+				                               "part_note",
+				                               "fio",
+				                               "city",
+				                               "phone",
+				                               "email",
+											   "date");
+			$data = $this->fp->process($message_fields_profession, $vin, $fields, $checks , "SUCCESS_CREATE_PROFESSION");
+			$this->mail->send(Config::ADM_EMAIL, array('data' => $data), "vinform");
+			$this->redirect(URL::get("success"));
+		}
+		else {
 			$articles = ArticleDB::getAllShow(Config::COUNT_ARTICLES_ON_PAGE, $this->getOffset(Config::COUNT_ARTICLES_ON_PAGE), true);
 			//пагинация
 			$pagination = $this->getPagination(ArticleDB::getCount(), Config::COUNT_ARTICLES_ON_PAGE, "/");
@@ -69,6 +104,7 @@ class MainController extends Controller {
 			$blog->articles = $articles;
 			$blog->pagination = $pagination;
 			$this->render($this->renderData(array("blog" => $blog),"help"));
+		}
 
 //		$form = new Form();
 ////		$form->hornav = $hornav;
@@ -146,6 +182,24 @@ class MainController extends Controller {
 	}
 	//метод для вывода формы регистрации
 	public function actionRegister(){
+		$message_name = "register";
+		if ($this->request->register) {
+			$user_old_1 = new UserDB();
+			$user_old_1->loadOnEmail($this->request->email);
+//			$captcha = $this->request->captcha;
+//			$checks = array(array(Captcha::check($captcha), true, "ERROR_CAPTCHA_CONTENT"));
+			$checks = array(array(true, true, "ERROR_CAPTCHA_CONTENT"));
+			$checks[] = array($this->request->password, $this->request->password_conf, "ERROR_PASSWORD_CONF");
+			$checks[] = array($user_old_1->isSaved(), false, "ERROR_EMAIL_ALREADY_EXISTS");
+			$user = new UserDB();
+			$fields = array("email", array("setPassword()", $this->request->password),"roles");
+			$user = $this->fp->process($message_name, $user, $fields, $checks);
+			if ($user instanceof UserDB) {
+				$this->mail->send($user->email, array("user" => $user, "link" => URL::get("activate", "", array("email" => $user->email, "key" => $user->activation), false, Config::ADDRESS)), "register");
+				$this->redirect(URL::get("sregister"));
+			}
+		}
+
 			//вывводим статьи
 			$articles = ArticleDB::getAllShow(Config::COUNT_ARTICLES_ON_PAGE, $this->getOffset(Config::COUNT_ARTICLES_ON_PAGE), true);
 			//пагинация
@@ -363,11 +417,11 @@ class MainController extends Controller {
 		$this->meta_desc = "Регистрация на сайте ".Config::SITENAME.".";
 		$this->meta_key = "регистрация сайт ".mb_strtolower(Config::SITENAME).", зарегистрироваться сайт ".mb_strtolower(Config::SITENAME);
 	
-		$hornav = $this->getHornav();
-		$hornav->addData("Регистрация");
+//		$hornav = $this->getHornav();
+//		$hornav->addData("Регистрация");
 		
 		$pm = new PageMessage();
-		$pm->hornav = $hornav;
+//		$pm->hornav = $hornav;
 		$pm->header = "Регистрация";
 		$pm->text = "Учётная запись создана. На указанный Вами адрес электронной почты отправлено письмо с инструкцией по активации. Если письмо не доходит, то обратитесь к администрации.";
 		$this->render($pm);
@@ -376,22 +430,22 @@ class MainController extends Controller {
 	public function actionActivate() {
 		$user_db = new UserDB();
 		//загружаем пользователя по полученному логину
-		$user_db->loadOnLogin($this->request->login);
+		$user_db->loadOnEmail($this->request->email);
 		
-		$hornav = $this->getHornav();
+//		$hornav = $this->getHornav();
 		//если есть такой пользователь существует и поле пустое то пользователь актевирован уже
 		if ($user_db->isSaved() && ($user_db->activation == "")) {
 			$this->title = "Ваш аккаунт уже активирован";
 			$this->meta_desc = "Вы можете войти в свой аккаунт, используя Ваши логин и пароль.";
 			$this->meta_key = "активация, успешная активация, успешная активация регистрация";
-			$hornav->addData("Активация");
+//			$hornav->addData("Активация");
 		}
 		//если ключи не подходят, то выводим ошибку
 		elseif ($user_db->activation != $this->request->key) {
 			$this->title = "Ошибка при активации";
 			$this->meta_desc = "Неверный код активации! Если ошибка будет повторяться, то обратитесь к администрации.";
 			$this->meta_key = "активация, ошибка активация, ошибка активация регистрация";
-			$hornav->addData("Ошибка активации");
+//			$hornav->addData("Ошибка активации");
 		}
 		//активация
 		else {
@@ -403,11 +457,11 @@ class MainController extends Controller {
 			$this->title = "Ваш аккаунт успешно активирован";
 			$this->meta_desc = "Теперь Вы можете войти в свою учётную запись, используя Ваши логин и пароль.";
 			$this->meta_key = "активация, успешная активация, успешная активация регистрация";
-			$hornav->addData("Активация");
+//			$hornav->addData("Активация");
 		}
 		
 		$pm = new PageMessage();
-		$pm->hornav = $hornav;
+//		$pm->hornav = $hornav;
 		$pm->header = $this->title;
 		$pm->text = $this->meta_desc;
 		$this->render($pm);

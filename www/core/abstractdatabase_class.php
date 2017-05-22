@@ -54,6 +54,14 @@ abstract class AbstractDataBase {
 			$len_sq = strlen($this->sq);
 			//проводим итерацию и проверям каждое значения запроса
 			for($i = 0; $i < count($params); $i++) {
+				if(is_array($params[$i])){
+					$arr_str = '';
+					foreach($params[$i] as $v){
+						$arr_str .= $v.',';
+					}
+					$arr_str = substr($arr_str,0,-1);
+					$params[$i] = $arr_str;
+				}
 				//ищем позицию вхождения для строки
 				$pos = strpos($query, $this->sq, $offset);
 				//проверка на null 
@@ -150,8 +158,6 @@ abstract class AbstractDataBase {
 	public function insert($table_name, $row){
 		/*table_name - название таблицы, куда должны пойти данные
 		row - сами данные, ключи название столбца*/
-		print_r($row);
-		exit;
 		//проверка на данные, если данных нет то возвращаем false
 		if(count($row) == 0) return false;
 		//получаем название таблицы с префиксом, с помощью метода getTableName

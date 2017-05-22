@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 18 2017 г., 20:39
+-- Время создания: Май 22 2017 г., 22:24
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `myit_sef` (
   `link` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- Дамп данных таблицы `myit_sef`
@@ -349,7 +349,9 @@ INSERT INTO `myit_sef` (`id`, `link`, `alias`) VALUES
 (27, '/parts?id=2', 'kapot'),
 (28, '/parts?id=3', 'bamper_audi'),
 (29, '/article?id=5', 'zapchasty1'),
-(30, '/extesearch', 'extesearch');
+(30, '/extesearch', 'extesearch'),
+(33, '/success', 'success'),
+(35, '/auth', 'auth');
 
 -- --------------------------------------------------------
 
@@ -367,7 +369,18 @@ CREATE TABLE IF NOT EXISTS `myit_users` (
   `date_reg` int(11) unsigned NOT NULL,
   `activation` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+--
+-- Дамп данных таблицы `myit_users`
+--
+
+INSERT INTO `myit_users` (`id`, `login`, `email`, `password`, `name`, `avatar`, `date_reg`, `activation`) VALUES
+(8, 'log8', 'log7@mail.ru', '05b57626193c61154a6b161bf7c52fa2', 'FIO', NULL, 1475150732, ''),
+(9, '', 'log8@mail.ru', 'd9918fc1731ee29dbeaa4082d2b40b10', '', NULL, 1495474887, '592322c708670'),
+(10, '', 'log9@mail.ru', 'd9918fc1731ee29dbeaa4082d2b40b10', '', NULL, 1495475319, '592324779b8fb'),
+(11, '', 'log10@mail.ru', 'd9918fc1731ee29dbeaa4082d2b40b10', '', NULL, 1495475345, '59232491871c3'),
+(12, '', 'log11@mail.ru', 'd9918fc1731ee29dbeaa4082d2b40b10', '', NULL, 1495476317, '');
 
 -- --------------------------------------------------------
 
@@ -401,7 +414,35 @@ CREATE TABLE IF NOT EXISTS `myit_vin_form` (
   `email` varchar(255) NOT NULL,
   `date` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+
+--
+-- Дамп данных таблицы `myit_vin_form`
+--
+
+INSERT INTO `myit_vin_form` (`id`, `marka`, `model`, `year`, `vin`, `body_type`, `drive_type`, `door`, `drive_unit`, `air_conditioning`, `hydraulic_booster`, `turbo`, `engine_capacity`, `type_kpp`, `infa_dop`, `part_name`, `part_article`, `part_count`, `part_note`, `fio`, `city`, `phone`, `email`, `date`) VALUES
+(1, '2', '6', '2001', '6', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(2, '2', '5', '2002', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(3, '2', '5', '2001', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', ',2', ',2', ',2', ',2', '', '', '+7', '', NULL),
+(4, '1', '5', '2002', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', ',2', ',2', ',2', ',2', '', '', '+7', '', NULL),
+(5, '2', '56', '2002', '56', '0', '', '0', '0', '0', '0', '0', '', '0', '', '3,4,5', '3,4,5', '3,4,5', '3,4,5', '', '', '+7', '', NULL),
+(6, '2', '5', '2002', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(7, '2', '09', '2001', '09', 'Седан', 'fghfg', '2', 'Задний', 'yes', 'no', 'yes', '56', '1', 'dfghdfghdfghdfghdfghdfgh', '6,7', '6,7', '6,7', '6,7', 'Test', 'Test', '+7 (567) 567-56-75', 'asdfasdfasdfa@asdfasd.ru', NULL),
+(8, '1', '0', '2002', '0', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(9, '1', '5', '2002', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(10, '1', '5', '2001', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(11, '1', '5', '2001', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(12, '2', '5', '2001', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(13, '1', '5', '2001', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(14, '2', '67', '2002', '6', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(15, '3', '4', '2002', '4', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(16, '2', '5', '2002', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(17, '1', '5', '2001', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(18, '2', '45', '2002', '45', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(19, '1', '5', '2001', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(20, '1', '45', '2001', '4', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(21, '2', '5', '2004', '5', '0', '', '0', '0', '0', '0', '0', '', '0', '', '', '', '', '', '', '', '+7', '', NULL),
+(22, '5', '4', '2005', '4', 'Седан', '', '2', 'Задний', 'yes', 'no', 'yes', '', '0', '', '2,3', '2,3', '2,3', '2,3', 'Test', 'Test', '+7 (888) 888-88-88', 'asdfasdfasdfa@asdfasd.ru', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -118,7 +118,7 @@ abstract class AbstractObjectDB {
 	public function save(){			
 		//нужно узнать, что мы будем делать либо добавлять или изменять запись
 		//проверям сохранена ли она,есть ли в объекте id
-		$update = $this->isSaved();		
+		$update = $this->isSaved();
 		//проверяем если есть id то update(обнавление) иначе добавление(insert)
 		if($update) $commit = $this->preUpdate();
 		else $commit = $this->preInsert();
@@ -571,7 +571,7 @@ abstract class AbstractObjectDB {
 		//перебираем свойства
 		foreach ($this->properties as $key => $value) {
 			//записываем объект валидатора с параметрам, который передается в коснтруктор само value
-			//new ValidateName("maxim")	
+			//new ValidateName("maxim")
 			$v[$key] = new $value["validator"]($value["value"]);
 		}
 		//ищем ошибки при создании конструктора он ищет сразу ошибки

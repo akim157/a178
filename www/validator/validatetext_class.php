@@ -10,11 +10,11 @@ class ValidateText extends Validator {
 	
 	protected function validate() {
 		//берем занчение от родителя
-		$data = $this->data;
-		//если текста нет
-		if (mb_strlen($data) == 0) $this->setError(self::CODE_EMPTY);
-		//если тект привышает макимальную длинну
-		elseif (mb_strlen($data) > self::MAX_LEN) $this->setError(self::CODE_MAX_LEN);
+//		$data = $this->data;
+//		//если текста нет
+//		if (mb_strlen($data) == 0) $this->setError(self::CODE_EMPTY);
+//		//если тект привышает макимальную длинну
+//		elseif (mb_strlen($data) > self::MAX_LEN) $this->setError(self::CODE_MAX_LEN);
 	}
 	
 }

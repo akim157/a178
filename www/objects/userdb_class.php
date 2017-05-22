@@ -8,10 +8,10 @@ class UserDB extends ObjectDB {
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("login", "ValidateLogin");
+//		$this->add("login", "ValidateLogin");
 		$this->add("email", "ValidateEmail");
 		$this->add("password", "ValidatePassword");
-		$this->add("name", "ValidateName");
+//		$this->add("name", "ValidateName");
 		$this->add("avatar", "ValidateIMG");
 		$this->add("date_reg", "ValidateDate", self::TYPE_TIMESTAMP, $this->getDate());
 		$this->add("activation", "ValidateActivation", null, $this->getKey());
@@ -60,12 +60,22 @@ class UserDB extends ObjectDB {
 		$_SESSION["auth_login"] = $this->login;
 		$_SESSION["auth_password"] = $this->password;
 	}
+	//для авторизации
+	public function email() {
+		//проверка на активацию пользователя
+		if ($this->activation != "") return false;
+		//запускаем сессию
+		if (!session_id()) session_start();
+		//записываем в нее логин и пароль
+		$_SESSION["auth_email"] = $this->email;
+		$_SESSION["auth_password"] = $this->password;
+	}
 	//выход из авторизации
 	public function logout() {
 		//запускаем сессию если она не была начита
 		if (!session_id()) session_start();
 		//удалем из сессии переменные
-		unset($_SESSION["auth_login"]);
+		unset($_SESSION["auth_email"]);
 		unset($_SESSION["auth_password"]);
 	}
 	//получить аватар
@@ -79,16 +89,16 @@ class UserDB extends ObjectDB {
 		return $this->password === self::hash($password, Config::SECRET);
 	}
 	//авторизация пользователя, возвращает объект авторизованного пользователя
-	public static function authUser($login = false, $password = false) {
+	public static function authUser($email = true, $password = false) {
 		//если передается логин то мы сразу ставим авторизацию true
-		if ($login) $auth = true;
+		if ($email) $auth = true;
 		else {
 			//если нет логина значит идет проверка, что находиться в сессии
 			//проверяем начата ли сессия
 			if (!session_id()) session_start();
 			//если логин и пароль в сессии есть то присваеваем знчение в переменные
-			if (!empty($_SESSION["auth_login"]) && !empty($_SESSION["auth_password"])) {
-				$login = $_SESSION["auth_login"];
+			if (!empty($_SESSION["auth_email"]) && !empty($_SESSION["auth_password"])) {
+				$email = $_SESSION["auth_email"];
 				$password = $_SESSION["auth_password"];
 			}
 			else return;
@@ -102,18 +112,18 @@ class UserDB extends ObjectDB {
 		$select = new Select();
 		//формируем запрос ищем по логину и паролю
 		$select->from(self::$table, array("COUNT(id)"))
-			->where("`login` = ".self::$db->getSQ(), array($login))
+			->where("`email` = ".self::$db->getSQ(), array($email))
 			->where("`password` = ".self::$db->getSQ(), array($password));
-		//получаем ячейку данных	
+		//получаем ячейку данных
 		$count = self::$db->selectCell($select);
 		//если есть такой пользователь
 		if ($count) {
-			//загружаем пользователя по логину
-			$user->loadOnLogin($login);
+			//загружаем пользователя по email
+			$user->loadOnEmail($email);
 			//если активации нет то исключение
 			if ($user->activation != "") throw new Exception("ERROR_ACTIVATE_USER");
 			//запускаем
-			if ($auth) $user->login();
+			if ($auth) $user->email();
 			return $user;
 		}
 		//ошибка авторизации user

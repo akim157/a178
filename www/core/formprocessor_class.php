@@ -82,9 +82,9 @@ class FormProcessor {
 		}
 	}
 	//авторизация пользователя
-	public function auth($message_name, $obj, $method, $login, $password) {
+	public function auth($message_name, $obj, $method, $email, $password) {
 		try {
-			$user = $obj::$method($login, $password);
+			$user = $obj::$method($email, $password);
 			return $user;
 		} catch (Exception $e) {
 			$this->setSessionMessage($message_name, $this->getError($e));
@@ -101,7 +101,7 @@ class FormProcessor {
 		//если сессиы не начина, начинаю ее
 		if (!session_id()) session_start();
 		//сохраняем в сессии
-		$_SESSION["message"] = array($to => $message);
+//		$_SESSION["message"] = array($to => $message);
 	}
 	
 	//получение из сессии сообщений

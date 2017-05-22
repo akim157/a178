@@ -13,32 +13,48 @@
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<?php foreach ($items as $item) { ?>
+			<?php if(!empty($_SESSION['auth_email']) && !empty($_SESSION['auth_password'])) { ?>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<?php foreach ($items as $item) { ?>
 						<li <?php if($item->link == $uri) { ?>class="active"<?php } ?>>
-							<a href="<?=$item->link?>"><?=$item->title?></a>
+						<a href="<?=$item->link?>"><?=$item->title?></a>
 						</li>
-					<?php } ?>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" class="entrance">вход</a></li>
-					<li><a href="/register.html">регистрация</a></li>
-				</ul>
-				<div class="auto">
-					<form class="form-inline" name="auth" action="/" method="post">
-						<div class="form-group">
-							<label class="sr-only" for="exampleInputEmail3">Email address</label>
-							<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-						</div>
-						<div class="form-group">
-							<label class="sr-only" for="exampleInputPassword3">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-						</div>
-						<button type="submit" class="btn btn-default btn-search">Войти</button>
-					</form>
-				</div>
-			</div><!-- /.navbar-collapse -->
+						<?php } ?>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/user/editprofile.html">Личный кабинет</a></li>
+						<li><a href="/logout.html">выход</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			<?php } else { ?>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<?php foreach ($items as $item) { ?>
+						<li <?php if($item->link == $uri) { ?>class="active"<?php } ?>>
+						<a href="<?=$item->link?>"><?=$item->title?></a>
+						</li>
+						<?php } ?>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#" class="entrance">вход</a></li>
+						<li><a href="/register.html">регистрация</a></li>
+					</ul>
+					<div class="auto">
+						<form class="form-inline" name="auth" action="/" method="post">
+							<div class="form-group">
+								<label class="sr-only" for="exampleInputEmail3">Email address</label>
+								<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="email">
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="exampleInputPassword3">Password</label>
+								<input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" name="password">
+							</div>
+							<button type="submit" class="btn btn-default btn-search" name="auth" value="Войти">Войти</button>
+						</form>
+					</div>
+				</div><!-- /.navbar-collapse -->
+			<?php } ?>
 		</div><!-- /.container-fluid -->
 	</nav>
 </div> <!-- /.menu-top -->
